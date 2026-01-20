@@ -1,50 +1,79 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap");
 
+/* =========================
+   RESET & GLOBAL
+========================= */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
 body {
-  background-color: #fff9fb;
-  background-image: radial-gradient(#ffe4e1 1px, transparent 1px);
-  background-size: 20px 20px;
+  margin: 0;
+  padding: 20px 14px;
+
   font-family: "Quicksand", sans-serif;
   color: #5d5d5d;
+
+  background-color: #fff9fb;
+  background-image: radial-gradient(#ffe4e1 1px, transparent 1px);
+  background-size: 22px 22px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 20px;
-  margin: 0;
 }
 
-h2,
-h3 {
+/* =========================
+   JUDUL
+========================= */
+h2 {
+  font-size: 1.6rem;
+  margin-bottom: 6px;
   color: #ff8fab;
-  text-shadow: 2px 2px #ffffff;
   text-align: center;
 }
 
-h2 {
-  font-size: 2rem;
-  margin-bottom: 10px;
+p {
+  font-size: 0.95rem;
+  text-align: center;
+  line-height: 1.5;
+  margin-bottom: 20px;
 }
 
+/* =========================
+   CONTAINER HASIL
+========================= */
 #hasil-container,
 #rekomendasi-container {
-  background: white;
-  padding: 25px;
-  border-radius: 30px;
-  box-shadow: 0 10px 0px #ffdae0;
   width: 100%;
-  max-width: 500px;
-  margin-bottom: 30px;
-  border: 3px solid #ffdae0;
-}
+  max-width: 420px;
 
-.hasil-item {
-  margin-bottom: 20px;
+  background: #ffffff;
+  padding: 18px;
+  margin-bottom: 24px;
+
+  border-radius: 22px;
+  border: 2px solid #ffdae0;
+  box-shadow: 0 6px 0px #ffdae0;
+
   position: relative;
 }
 
+/* =========================
+   ITEM HASIL
+========================= */
+.hasil-item {
+  margin-bottom: 18px;
+}
+
 .faktor-nama {
+  font-size: 0.9rem;
   font-weight: 700;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   color: #6a6a6a;
   display: flex;
   align-items: center;
@@ -52,95 +81,105 @@ h2 {
 
 .faktor-nama::before {
   content: "⭐";
-  margin-right: 8px;
+  margin-right: 6px;
 }
 
+/* =========================
+   PROGRESS BAR
+========================= */
 .progress-bar {
-  background-color: #f0f0f0;
-  border-radius: 20px;
-  height: 25px;
+  height: 18px;
+  border-radius: 14px;
   overflow: hidden;
-  border: 2px solid #eeeeee;
+  background-color: #f2f2f2;
+  border: 1px solid #e6e6e6;
 }
 
 .progress-fill {
   height: 100%;
-  border-radius: 20px;
-  transition: width 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-radius: 14px;
+  transition: width 1.2s ease;
+
   background-image: linear-gradient(
     45deg,
-    rgba(255, 255, 255, 0.2) 25%,
+    rgba(255, 255, 255, 0.25) 25%,
     transparent 25%,
     transparent 50%,
-    rgba(255, 255, 255, 0.2) 50%,
-    rgba(255, 255, 255, 0.2) 75%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0.25) 75%,
     transparent 75%,
     transparent
   );
-  background-size: 30px 30px;
-  animation: move-stripes 2s linear infinite;
+  background-size: 24px 24px;
+  animation: move 2s linear infinite;
 }
 
-@keyframes move-stripes {
+@keyframes move {
   from {
     background-position: 0 0;
   }
   to {
-    background-position: 30px 0;
+    background-position: 24px 0;
   }
 }
 
 .persentase {
   display: block;
   text-align: right;
+  font-size: 0.85rem;
   font-weight: 700;
   color: #ff8fab;
-  margin-top: 5px;
+  margin-top: 4px;
 }
 
-/* Tombol-Tombol */
+/* =========================
+   BUTTON
+========================= */
 .navigation-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
   margin: 20px 0;
 }
 
 button {
-  cursor: pointer;
   font-family: "Quicksand", sans-serif;
   font-weight: 700;
-  padding: 15px 35px;
+
+  font-size: 0.95rem;
+  padding: 12px 28px;
+
   border: none;
-  border-radius: 50px;
-  transition: all 0.3s ease;
-  font-size: 1rem;
-  box-shadow: 0 6px 0px #dbdbdb;
-  position: relative;
+  border-radius: 40px;
+  cursor: pointer;
+
+  transition: all 0.2s ease;
 }
 
+/* Next */
 .btn-next {
   background-color: #ffb7b2;
-  color: white;
-  box-shadow: 0 6px 0px #ff8fab;
+  color: #ffffff;
+  box-shadow: 0 5px 0px #ff8fab;
 }
 
-.btn-next:hover {
+.btn-next:active {
   transform: translateY(3px);
-  box-shadow: 0 3px 0px #ff8fab;
-  background-color: #ff9aa2;
+  box-shadow: 0 2px 0px #ff8fab;
 }
 
+/* Back */
 .btn-back {
   background-color: #b2e2f2;
   color: #4a90a4;
-  box-shadow: 0 6px 0px #86c5da;
+  box-shadow: 0 5px 0px #86c5da;
 }
 
-.btn-back:hover {
-  transform: translateY(3px);
-  box-shadow: 0 3px 0px #86c5da;
-}
-
-/* Loading & Rekomendasi */
+/* =========================
+   LOADING
+========================= */
 .thinking-text {
+  font-size: 0.9rem;
   font-weight: 600;
   color: #b19cd9;
   animation: bounce 1s infinite alternate;
@@ -151,52 +190,50 @@ button {
     transform: translateY(0);
   }
   to {
-    transform: translateY(-10px);
+    transform: translateY(-6px);
   }
 }
 
 .loader {
-  border: 6px solid #f3f3f3;
-  border-top: 6px solid #ffb7b2;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #ffb7b2;
   animation: spin 1s linear infinite;
-  display: inline-block;
+  margin-top: 10px;
 }
 
 @keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
+  to {
     transform: rotate(360deg);
   }
 }
 
-.rekomendasi-item {
-  background: #fff5f7;
-  padding: 15px;
-  border-radius: 20px;
-  margin-bottom: 15px;
-  border-left: 5px solid #ffb7b2;
-}
+/* =========================
+   DESKTOP (ENHANCE)
+========================= */
+@media (min-width: 768px) {
+  body {
+    padding: 40px;
+  }
 
-.rekomendasi-item h4 {
-  margin: 0 0 5px 0;
-  color: #ff8fab;
-}
+  h2 {
+    font-size: 2.2rem;
+  }
 
-.rekomendasi-item p {
-  margin: 0;
-  font-size: 0.95rem;
-  line-height: 1.4;
-}
+  #hasil-container,
+  #rekomendasi-container {
+    max-width: 520px;
+    padding: 28px;
+  }
 
-#hasil-container::after {
-  content: "🐾";
-  position: absolute;
-  bottom: -10px;
-  right: -10px;
-  font-size: 2rem;
+  .progress-bar {
+    height: 22px;
+  }
+
+  button {
+    font-size: 1.05rem;
+    padding: 14px 40px;
+  }
 }
