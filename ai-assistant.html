@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Assistant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header>AI Assistant</header>
+
+<div class="container">
+
+  <textarea id="userInput" rows="4"
+    placeholder="Contoh: Tambahkan tugas kerjakan laporan besok jam 3 sore"></textarea>
+
+  <button onclick="processAI()">Proses dengan AI</button>
+
+  <div id="aiResult"></div>
+
+</div>
+
+<script src="assets/app.js"></script>
+<script>
+function processAI() {
+  const text = document.getElementById("userInput").value.trim();
+  if (!text) {
+    alert("Masukkan perintah tugas terlebih dahulu");
+    return;
+  }
+
+  const result = aiParseTask(text);
+
+  document.getElementById("aiResult").innerHTML = `
+    <div class="task-card">
+      <div class="task-info">
+        <h3>${result.title}</h3>
+        <span class="priority ${result.priority}">${result.priority}</span>
+        <span class="deadline">${result.deadline}</span>
+        <span class="recommendation">${result.reason}</span>
+        <button onclick='confirmTask(${JSON.stringify(result)})'>Confirm</button>
+      </div>
+    </div>
+  `;
+}
+
+function confirmTask(task) {
+  addTask({
+    id: Date.now(),
+    title: task.title,
+    deadline: task.deadline,
+    priority: task.priority,
+    isDone: false
+  });
+
+  alert("Tugas berhasil ditambahkan");
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

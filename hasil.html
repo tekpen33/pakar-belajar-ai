@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hasil Angket Pakar Belajar</title>
+    <link rel="stylesheet" href="style-hasil.css" />
+  </head>
+
+  <body>
+    <h2>Hasil Angket Pakar Belajar</h2>
+    <p>Berikut adalah persentase hasil untuk setiap faktor:</p>
+
+    <div id="hasil-container"></div>
+
+    <div class="navigation-buttons">
+      <button type="button" class="btn-next" onclick="prosesRekomendasi()">
+        Lihat Rekomendasi
+      </button>
+    </div>
+
+    <div
+      id="loading-ai"
+      style="display: none; text-align: center; margin-top: 30px"
+    >
+      <p class="thinking-text">Sistem sedang menganalisis jawaban...</p>
+      <div class="loader"></div>
+    </div>
+
+    <div id="rekomendasi-container" style="display: none"></div>
+
+    <div id="kembali-awal" class="navigation-buttons" style="display: none">
+      <a href="pakarbelajar.html">
+        <button type="button" class="btn-back">Kembali ke Awal</button>
+      </a>
+    </div>
+
+    <script>
+  function tampilkanHasil() {
+    const hasilAngket =
+      JSON.parse(localStorage.getItem("hasilAngket")) || {};
+    const container = document.getElementById("hasil-container");
+
+    const faktorNama = {
+      F1: "Disiplin Belajar",
+      F2: "Manajemen Waktu",
+      F3: "Motivasi Belajar",
+      F4: "Lingkungan Belajar",
+    };
+
+    const warnaBar = {
+      F1: "#4CAF50",
+      F2: "#2196F3",
+      F3: "#FF9800",
+      F4: "#9C27B0",
+    };
+
+    let html = "";
+
+    for (const key in faktorNama) {
+      const persen = hasilAngket[key]?.persentase || 0;
+
+      html += `
+        <div class="hasil-item">
+          <p class="faktor-nama">${faktorNama[key]}</p>
+          <div class="progress-bar">
+            <div class="progress-fill"
+              style="width: 0%; background-color: ${warnaBar[key]}"
+              data-width="${persen}%"></div>
+          </div>
+          <span class="persentase">${persen}%</span>
+        </div>
+      `;
+    }
+
+    container.innerHTML = html;
+
+    setTimeout(() => {
+      document.querySelectorAll(".progress-fill").forEach((bar) => {
+        bar.style.width = bar.dataset.width;
+      });
+    }, 100);
+  }
+
+  // =========================
+  // KATEGORI SISTEM PAKAR
+  // =========================
+  function kategori(nilai) {
+    if (nilai >= 75) return "sangat baik";
+    if (nilai >= 60) return "baik";
+    if (nilai >= 45) return "cukup";
+    return "perlu perbaikan";
+  }
+
+  // =========================
+  // KIRIM KE CHATBOT
+  // =========================
+  function prosesRekomendasi() {
+    document.getElementById("loading-ai").style.display = "block";
+
+    const hasilAngket = JSON.parse(localStorage.getItem("hasilAngket"));
+
+    const faktor = {
+      F1: "Disiplin Belajar",
+      F2: "Manajemen Waktu",
+      F3: "Motivasi Belajar",
+      F4: "Lingkungan Belajar",
+    };
+
+    let prompt = `Saya memiliki hasil angket sistem pakar belajar sebagai berikut:\n\n`;
+
+    Object.keys(faktor).forEach((key) => {
+      const nilai = hasilAngket[key].persentase;
+      prompt += `- ${faktor[key]}: ${nilai}% (${kategori(nilai)})\n`;
+    });
+
+    prompt += `
+    
+Tugas Anda sebagai AI:
+1. Analisis kondisi belajar saya berdasarkan data di atas
+2. Jelaskan kekuatan dan kelemahan saya
+3. Berikan rekomendasi belajar yang praktis, realistis, dan mudah diterapkan
+Gunakan bahasa yang sederhana dan memotivasi.
+`;
+
+    // simpan prompt untuk chatbot
+    localStorage.setItem("promptChatbot", prompt);
+
+    // redirect ke chatbot
+    setTimeout(() => {
+      window.location.href = "chatbot.html";
+    }, 1500);
+  }
+
+  window.onload = tampilkanHasil;
+</script>
+
+  </body>
+</html>

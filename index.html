@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Task-Timer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- GLOBAL CSS -->
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header>AI Task-Timer</header>
+
+<div class="container">
+
+  <!-- SEARCH -->
+  <input type="text" id="search" placeholder="Search task...">
+
+  <!-- ACTION NAVBAR -->
+<div class="action-bar">
+
+  <button onclick="location.href='addtask.html'" class="action-btn add">
+    ➕ Add Task
+  </button>
+
+  <button onclick="location.href='ai-assistant.html'" class="action-btn ai">
+    🤖 AI Assistant
+  </button>
+
+  <button onclick="location.href='chatbot.html'" class="action-btn chat">
+    💬 Chatbot
+  </button>
+
+  <button onclick="location.href='pakarbelajar.html'" class="action-btn mbti">
+    🧠 Pakar Belajar
+  </button>
+
+  <button onclick="location.href='calender.html'" class="action-btn calendar">
+    📅 Calendar
+  </button>
+
+</div>
+
+  <!-- SUMMARY -->
+  <div class="summary">
+    <div class="summary-card">
+      <h2 id="completedCount">0</h2>
+      <p>Completed</p>
+    </div>
+    <div class="summary-card">
+      <h2 id="activeCount">0</h2>
+      <p>Active</p>
+    </div>
+  </div>
+
+  <!-- TASK LIST -->
+  <h3>Today's Tasks</h3>
+  <ul id="taskList"></ul>
+
+</div>
+
+<!-- GLOBAL SCRIPT -->
+<script src="assets/app.js"></script>
+
+<script>
+function deleteTask(id) {
+  tasks = tasks.filter(task => task.id !== id);
+  saveTasks();
+  renderTasks();
+}
+
+function editTask(id) {
+  const task = tasks.find(t => t.id === id);
+  localStorage.setItem("editTask", JSON.stringify(task));
+  location.href = "addtask.html";
+}
+
+function renderTasks() {
+  const taskList = document.getElementById("taskList");
+  taskList.innerHTML = "";
+
+  let completedCount = 0;
+
+  tasks.forEach(task => {
+    const card = document.createElement("div");
+    card.className = "task-card";
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = task.isDone;
+    checkbox.onchange = () => {
+      toggleDone(task.id);
+      renderTasks();
+    };
+
+    const info = document.createElement("div");
+    info.className = "task-info";
+    info.innerHTML = `
+      <h3>${task.title}</h3>
+      <span class="priority ${task.priority}">${task.priority}</span>
+      <span class="deadline">${task.deadline}</span>
+    `;
+
+    const editBtn = document.createElement("button");
+    editBtn.textContent = "✏️";
+    editBtn.onclick = () => editTask(task.id);
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "🗑";
+    deleteBtn.onclick = () => deleteTask(task.id);
+
+    card.appendChild(checkbox);
+    card.appendChild(info);
+    card.appendChild(editBtn);
+    card.appendChild(deleteBtn);
+
+    taskList.appendChild(card);
+
+    if (task.isDone) completedCount++;
+  });
+
+  document.getElementById("completedCount").textContent = completedCount;
+  document.getElementById("activeCount").textContent =
+    tasks.length - completedCount;
+}
+
+document.addEventListener("DOMContentLoaded", renderTasks);
+</script>
+</body>
+</html>

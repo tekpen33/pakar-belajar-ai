@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Calendar View</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header>
+  <button onclick="location.href='index.html'"
+          style="float:left; background:none; color:white; font-size:18px;">
+    ←
+  </button>
+  Calendar
+</header>
+
+<div class="container">
+
+  <h3 id="monthYear"></h3>
+
+  <div id="calendarGrid" style="display:grid; grid-template-columns:repeat(7,1fr); gap:6px;">
+  </div>
+
+  <p style="margin-top:12px;">● = Task</p>
+
+</div>
+
+<script src="assets/app.js"></script>
+<script src="assets/app.js"></script>
+
+<div id="tooltip" style="display:none;"></div>
+
+<script>
+const calendar = document.getElementById("calendarGrid");
+const monthYear = document.getElementById("monthYear");
+const tooltip = document.getElementById("tooltip");
+
+const now = new Date();
+const year = now.getFullYear();
+const month = now.getMonth();
+
+monthYear.textContent = now.toLocaleString("id-ID", {
+  month: "long",
+  year: "numeric"
+});
+
+function showTooltip(dateStr) {
+  const list = getTasksByDate(dateStr);
+  if (list.length === 0) return;
+
+  tooltip.style.display = "block";
+  tooltip.className = "tooltip";
+
+  tooltip.innerHTML = `
+    <span class="close" onclick="closeTooltip()">✖</span>
+    <h4>Task ${dateStr}</h4>
+    ${list.map(t => `
+      <div class="tooltip-task">
+        <strong>${t.title}</strong><br>
+        <span class="priority ${t.priority}">${t.priority}</span>
+        <small>${t.deadline.split(" ")[1]}</small>
+      </div>
+    `).join("")}
+  `;
+}
+
+function closeTooltip() {
+  tooltip.style.display = "none";
+}
+
+function buildCalendar() {
+  calendar.innerHTML = "";
+
+  const firstDay = new Date(year, month, 1).getDay();
+  const totalDays = new Date(year, month + 1, 0).getDate();
+
+  for (let i = 0; i < firstDay; i++) {
+    calendar.appendChild(document.createElement("div"));
+  }
+
+  for (let day = 1; day <= totalDays; day++) {
+    const cell = document.createElement("div");
+    cell.className = "calendar-day";
+
+    const dateStr = `${year}-${String(month + 1).padStart(2,"0")}-${String(day).padStart(2,"0")}`;
+    const tasksToday = getTasksByDate(dateStr);
+
+    if (tasksToday.length > 0) {
+      const highest = getHighestPriority(tasksToday);
+
+      if (highest === "High") cell.classList.add("priority-high");
+      else if (highest === "Medium") cell.classList.add("priority-medium");
+      else cell.classList.add("priority-low");
+
+      cell.innerHTML = `${day}<div class="calendar-dot">●</div>`;
+      cell.onclick = () => showTooltip(dateStr);
+    } else {
+      cell.textContent = day;
+    }
+
+    calendar.appendChild(cell);
+  }
+}
+
+buildCalendar();
+</script>
+<div id="tooltip" style="display:none;"></div>
+</body>
+</html>
