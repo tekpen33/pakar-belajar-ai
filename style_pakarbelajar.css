@@ -1,142 +1,190 @@
-/* Import font membulat */
+/* ========================= */
+/* GOOGLE FONT */
+/* ========================= */
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap");
 
+/* ========================= */
+/* GLOBAL */
+/* ========================= */
+* {
+  box-sizing: border-box;
+}
+
 body {
-  background-color: #e0f4ff; /* Biru muda cerah */
+  background-color: #e0f4ff;
   background-image: radial-gradient(#ffffff 2px, transparent 2px);
   background-size: 40px 40px;
   font-family: "Quicksand", sans-serif;
   color: #5d5d5d;
   margin: 0;
+  min-height: 100vh;
+
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
   align-items: center;
   justify-content: center;
 }
 
+/* ========================= */
+/* CONTAINER */
+/* ========================= */
 .container {
-  background: #fffdfa; /* Putih tulang */
-  padding: 50px 40px;
-  border-radius: 40px;
-  box-shadow: 0 15px 0px #bcd6e2;
+  background: #fffdfa;
+  padding: 32px 24px;
+  border-radius: 28px;
+  box-shadow: 0 12px 0px #bcd6e2;
   max-width: 600px;
+  width: 100%;
   text-align: center;
   border: 3px solid #ffffff;
-  margin: 20px;
+  margin: 16px;
   position: relative;
 }
 
-/* Animasi Ilustrasi Karakter Buku "Blinky" */
+/* ICON BUKU */
 .container::before {
   content: "📖";
-  font-size: 5rem;
+  font-size: 3.5rem;
   display: block;
   margin-bottom: 10px;
-  animation:
-    floating 3s ease-in-out infinite,
-    blinking 5s infinite;
+  animation: floating 3s ease-in-out infinite;
 }
 
+/* SPARKLE */
+.container::after {
+  content: "✨";
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 1.6rem;
+  animation: sparkle 2s infinite;
+}
+
+/* ========================= */
+/* ANIMATIONS */
+/* ========================= */
 @keyframes floating {
-  0% {
-    transform: translateY(0) rotate(0deg);
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.6);
   }
   50% {
-    transform: translateY(-20px) rotate(5deg);
-  }
-  100% {
-    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+    transform: scale(1.2);
   }
 }
 
+/* ========================= */
+/* TEXT */
+/* ========================= */
 h1 {
   color: #ff8fab;
-  font-size: 2.5rem;
-  margin-bottom: 0;
-  text-shadow: 3px 3px 0px #ffffff;
+  font-size: 1.9rem;
+  margin-bottom: 4px;
 }
 
 h3 {
   color: #4a90a4;
   font-weight: 600;
-  margin-top: 5px;
-  margin-bottom: 30px;
+  font-size: 1.1rem;
+  margin-bottom: 24px;
 }
 
 .intro p {
   line-height: 1.6;
   color: #7a8a9a;
-  font-size: 1.1rem;
+  font-size: 1rem;
+  margin-bottom: 14px;
 }
 
 .note {
   background-color: #fff0f3;
-  padding: 15px;
-  border-radius: 15px;
+  padding: 14px;
+  border-radius: 14px;
   border-left: 5px solid #ffb7b2;
   font-weight: 600;
   color: #e57373 !important;
   font-style: italic;
+  font-size: 0.95rem;
 }
 
-/* Tombol Mulai */
+/* ========================= */
+/* BUTTON */
+/* ========================= */
 .btn-start {
   display: inline-block;
   background-color: #ffb7b2;
   color: white;
-  padding: 18px 50px;
-  border-radius: 50px;
+  padding: 14px 36px;
+  border-radius: 40px;
   text-decoration: none;
   font-weight: 700;
-  font-size: 1.3rem;
-  box-shadow: 0 8px 0px #ff8fab;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  margin-top: 30px;
+  font-size: 1.1rem;
+  box-shadow: 0 6px 0px #ff8fab;
+  transition: all 0.25s ease;
+  margin-top: 26px;
 }
 
 .btn-start:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
   background-color: #ff9aa2;
-  box-shadow: 0 5px 0px #ff8fab;
 }
 
 .btn-start:active {
-  transform: translateY(4px);
-  box-shadow: 0 2px 0px #ff8fab;
+  transform: translateY(3px);
+  box-shadow: 0 3px 0px #ff8fab;
 }
 
-/* Footer */
+/* ========================= */
+/* FOOTER */
+/* ========================= */
 footer {
   margin-top: auto;
-  padding: 20px;
+  padding: 16px;
   text-align: center;
 }
 
 footer p {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: #4a90a4;
   opacity: 0.8;
+  line-height: 1.4;
 }
 
-/* Dekorasi Tambahan */
-.container::after {
-  content: "✨";
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 2rem;
-  animation: sparkle 2s infinite;
-}
+/* ========================= */
+/* DESKTOP (LAYAR BESAR) */
+/* ========================= */
+@media (min-width: 768px) {
 
-@keyframes sparkle {
-  0%,
-  100% {
-    opacity: 0;
-    transform: scale(0.5);
+  .container {
+    padding: 50px 40px;
+    border-radius: 40px;
   }
-  50% {
-    opacity: 1;
-    transform: scale(1.2);
+
+  .container::before {
+    font-size: 5rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  .intro p {
+    font-size: 1.1rem;
+  }
+
+  .btn-start {
+    font-size: 1.3rem;
+    padding: 18px 50px;
   }
 }
