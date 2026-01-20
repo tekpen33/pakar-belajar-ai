@@ -1,117 +1,105 @@
-/* Import font yang membulat */
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap");
 
+* {
+  box-sizing: border-box;
+}
+
+/* BODY */
 body {
-  background-color: #e0f4ff; /* Biru muda cerah */
+  background-color: #e0f4ff;
   background-image: radial-gradient(#ffffff 1.5px, transparent 1.5px);
   background-size: 30px 30px;
   font-family: "Quicksand", sans-serif;
   color: #5d5d5d;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px 20px;
   margin: 0;
+  padding: 24px 16px;
 }
 
+/* JUDUL */
 h2 {
   color: #4a90a4;
-  text-shadow: 2px 2px #ffffff;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
+  font-size: 1.4rem; /* BESAR DI HP */
+  text-align: center;
 }
 
-p {
-  margin-bottom: 30px;
+body > p {
+  margin-bottom: 24px;
   color: #7a8a9a;
+  font-size: 1rem;
+  text-align: center;
 }
 
+/* BLOK PERTANYAAN */
 .question-block {
   background: #fffdfa;
-  padding: 25px;
-  border-radius: 25px;
-  box-shadow: 0 8px 0px #bcd6e2;
+  padding: 18px;
+  border-radius: 22px;
+  box-shadow: 0 6px 0px #bcd6e2;
   width: 100%;
-  max-width: 650px;
-  margin-bottom: 25px;
+  max-width: 680px;
+  margin: 0 auto 20px;
   border: 2px solid #ffffff;
-  transition: transform 0.3s ease;
-}
-
-.question-block:hover {
-  transform: translateY(-5px);
 }
 
 .question-block p {
   font-weight: 700;
   color: #5d5d5d;
-  margin-bottom: 20px;
-  font-size: 1.05rem;
+  margin-bottom: 14px;
+  font-size: 1rem; /* 16px */
 }
 
+/* LIKERT */
 .likert {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 6px;
 }
 
 .likert span {
   font-weight: 700;
-  font-size: 0.9rem;
-  color: #888;
-  width: 80px;
+  font-size: 0.85rem;
+  width: 60px;
 }
 
 .likert span:first-child {
   color: #66bb6a;
   text-align: left;
 }
+
 .likert span:last-child {
   color: #ef5350;
   text-align: right;
 }
 
+/* RADIO */
 .likert input[type="radio"] {
   display: none;
 }
 
 .likert label {
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   cursor: pointer;
-  transition: all 0.2s ease;
-  border: 4px solid #f0f0f0;
+  border: 3px solid #f0f0f0;
   background-color: #ffffff;
   position: relative;
 }
 
-input[id$="_1"] + label {
-  border-color: #66bb6a;
-}
-input[id$="_2"] + label {
-  border-color: #9ccc65;
-}
-input[id$="_3"] + label {
-  border-color: #d4e157;
-}
-input[id$="_4"] + label {
-  border-color: #ffee58;
-} /* Netral */
-input[id$="_5"] + label {
-  border-color: #ffca28;
-}
-input[id$="_6"] + label {
-  border-color: #ffa726;
-}
-input[id$="_7"] + label {
-  border-color: #ef5350;
-} /* Tidak Setuju */
+/* WARNA */
+input[id$="_1"] + label { border-color: #66bb6a; }
+input[id$="_2"] + label { border-color: #9ccc65; }
+input[id$="_3"] + label { border-color: #d4e157; }
+input[id$="_4"] + label { border-color: #ffee58; }
+input[id$="_5"] + label { border-color: #ffca28; }
+input[id$="_6"] + label { border-color: #ffa726; }
+input[id$="_7"] + label { border-color: #ef5350; }
 
-/* Efek saat dipilih (Checked) */
+/* CHECKED */
 .likert input[type="radio"]:checked + label {
-  transform: scale(1.2);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  transform: scale(1.15);
 }
 
 .likert input[type="radio"]:checked + label::after {
@@ -120,79 +108,75 @@ input[id$="_7"] + label {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 15px;
-  height: 15px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
 }
 
-/* Warna titik tengah saat dipilih */
-input[id$="_1"]:checked + label::after {
-  background: #66bb6a;
-}
-input[id$="_2"]:checked + label::after {
-  background: #9ccc65;
-}
-input[id$="_3"]:checked + label::after {
-  background: #d4e157;
-}
-input[id$="_4"]:checked + label::after {
-  background: #ffee58;
-}
-input[id$="_5"]:checked + label::after {
-  background: #ffca28;
-}
-input[id$="_6"]:checked + label::after {
-  background: #ffa726;
-}
-input[id$="_7"]:checked + label::after {
-  background: #ef5350;
-}
+input[id$="_1"]:checked + label::after { background: #66bb6a; }
+input[id$="_2"]:checked + label::after { background: #9ccc65; }
+input[id$="_3"]:checked + label::after { background: #d4e157; }
+input[id$="_4"]:checked + label::after { background: #ffee58; }
+input[id$="_5"]:checked + label::after { background: #ffca28; }
+input[id$="_6"]:checked + label::after { background: #ffa726; }
+input[id$="_7"]:checked + label::after { background: #ef5350; }
 
-/* Tombol Navigasi */
+/* NAVIGATION */
 .navigation-buttons {
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 40px;
-  padding-bottom: 50px;
+  gap: 16px;
+  margin: 30px auto 40px;
+  max-width: 680px;
 }
 
 button {
+  flex: 1;
   cursor: pointer;
   font-family: "Quicksand", sans-serif;
   font-weight: 700;
-  padding: 15px 40px;
+  padding: 14px;
   border: none;
   border-radius: 50px;
-  font-size: 1.1rem;
-  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-size: 1rem;
 }
 
+/* BUTTON STYLE */
 .btn-back {
   background-color: #ffffff;
   color: #4a90a4;
-  box-shadow: 0 6px 0px #bcd6e2;
+  box-shadow: 0 5px 0px #bcd6e2;
   border: 2px solid #bcd6e2;
 }
 
 .btn-next {
   background-color: #ffb7b2;
   color: white;
-  box-shadow: 0 6px 0px #ff8fab;
+  box-shadow: 0 5px 0px #ff8fab;
 }
 
-/* Efek Interaktif Klik */
 button:active {
-  transform: translateY(4px);
+  transform: translateY(3px);
   box-shadow: 0 2px 0px #888;
 }
 
-.btn-next:hover {
-  background-color: #ff9aa2;
-  transform: scale(1.05);
-}
+/* DESKTOP */
+@media (min-width: 768px) {
 
-.btn-back:hover {
-  background-color: #f0faff;
-  transform: scale(1.05);
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  .question-block {
+    padding: 25px;
+  }
+
+  .likert label {
+    width: 35px;
+    height: 35px;
+  }
+
+  button {
+    font-size: 1.1rem;
+    padding: 16px 40px;
+  }
 }
