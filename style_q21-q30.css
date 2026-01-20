@@ -209,3 +209,71 @@ body {
     transform: translateY(0);
   }
 }
+@media (max-width: 480px) {
+
+  body {
+    padding: 20px 12px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+    text-align: center;
+  }
+
+  .container {
+    padding: 22px 18px;
+    border-radius: 20px;
+  }
+
+  .question-block {
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .question-block p {
+    font-size: 0.95rem;
+  }
+
+  /* Likert lebih rapat & pas layar */
+  .likert {
+    gap: 6px;
+  }
+
+  .likert span {
+    width: 65px;
+    font-size: 0.75rem;
+  }
+
+  .likert label {
+    width: 26px;
+    height: 26px;
+    border-width: 3px;
+  }
+
+  .likert input[type="radio"]:checked + label {
+    transform: scale(1.15);
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 12px 28px;
+  }
+
+  .navigation-buttons {
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+}
