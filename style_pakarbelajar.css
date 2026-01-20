@@ -1,15 +1,12 @@
-/* ========================= */
-/* GOOGLE FONT */
-/* ========================= */
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap");
 
-/* ========================= */
-/* GLOBAL */
-/* ========================= */
 * {
   box-sizing: border-box;
 }
 
+/* ========================= */
+/* BODY */
+/* ========================= */
 body {
   background-color: #e0f4ff;
   background-image: radial-gradient(#ffffff 2px, transparent 2px);
@@ -18,11 +15,6 @@ body {
   color: #5d5d5d;
   margin: 0;
   min-height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 /* ========================= */
@@ -30,54 +22,23 @@ body {
 /* ========================= */
 .container {
   background: #fffdfa;
-  padding: 32px 24px;
-  border-radius: 28px;
-  box-shadow: 0 12px 0px #bcd6e2;
-  max-width: 600px;
+  padding: 24px 20px;
+  border-radius: 24px;
+  box-shadow: 0 10px 0px #bcd6e2;
   width: 100%;
+  max-width: 520px;
+  margin: 24px auto;
   text-align: center;
   border: 3px solid #ffffff;
-  margin: 16px;
   position: relative;
 }
 
-/* ICON BUKU */
+/* ICON */
 .container::before {
   content: "📖";
-  font-size: 3.5rem;
+  font-size: 3rem;
   display: block;
   margin-bottom: 10px;
-  animation: floating 3s ease-in-out infinite;
-}
-
-/* SPARKLE */
-.container::after {
-  content: "✨";
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  font-size: 1.6rem;
-  animation: sparkle 2s infinite;
-}
-
-/* ========================= */
-/* ANIMATIONS */
-/* ========================= */
-@keyframes floating {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-  100% { transform: translateY(0); }
-}
-
-@keyframes sparkle {
-  0%, 100% {
-    opacity: 0;
-    transform: scale(0.6);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.2);
-  }
 }
 
 /* ========================= */
@@ -85,21 +46,21 @@ body {
 /* ========================= */
 h1 {
   color: #ff8fab;
-  font-size: 1.9rem;
-  margin-bottom: 4px;
+  font-size: 1.6rem; /* ≥16px */
+  margin-bottom: 6px;
 }
 
 h3 {
   color: #4a90a4;
   font-weight: 600;
-  font-size: 1.1rem;
-  margin-bottom: 24px;
+  font-size: 1rem;
+  margin-bottom: 20px;
 }
 
 .intro p {
   line-height: 1.6;
   color: #7a8a9a;
-  font-size: 1rem;
+  font-size: 1rem; /* FIX ZOOM */
   margin-bottom: 14px;
 }
 
@@ -109,7 +70,7 @@ h3 {
   border-radius: 14px;
   border-left: 5px solid #ffb7b2;
   font-weight: 600;
-  color: #e57373 !important;
+  color: #e57373;
   font-style: italic;
   font-size: 0.95rem;
 }
@@ -118,34 +79,23 @@ h3 {
 /* BUTTON */
 /* ========================= */
 .btn-start {
-  display: inline-block;
+  display: block;
+  width: 100%;
   background-color: #ffb7b2;
   color: white;
-  padding: 14px 36px;
+  padding: 16px;
   border-radius: 40px;
   text-decoration: none;
   font-weight: 700;
   font-size: 1.1rem;
   box-shadow: 0 6px 0px #ff8fab;
-  transition: all 0.25s ease;
-  margin-top: 26px;
-}
-
-.btn-start:hover {
-  transform: scale(1.05);
-  background-color: #ff9aa2;
-}
-
-.btn-start:active {
-  transform: translateY(3px);
-  box-shadow: 0 3px 0px #ff8fab;
+  margin-top: 24px;
 }
 
 /* ========================= */
 /* FOOTER */
 /* ========================= */
 footer {
-  margin-top: auto;
   padding: 16px;
   text-align: center;
 }
@@ -153,22 +103,17 @@ footer {
 footer p {
   font-size: 0.8rem;
   color: #4a90a4;
-  opacity: 0.8;
   line-height: 1.4;
 }
 
 /* ========================= */
-/* DESKTOP (LAYAR BESAR) */
+/* DESKTOP */
 /* ========================= */
 @media (min-width: 768px) {
 
   .container {
     padding: 50px 40px;
     border-radius: 40px;
-  }
-
-  .container::before {
-    font-size: 5rem;
   }
 
   h1 {
@@ -185,6 +130,6 @@ footer p {
 
   .btn-start {
     font-size: 1.3rem;
-    padding: 18px 50px;
+    padding: 18px;
   }
 }
